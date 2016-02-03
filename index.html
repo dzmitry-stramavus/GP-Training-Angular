@@ -9,6 +9,8 @@
   <script src="js/script.js"></script>
 </head>
 <body>
-  {{2 + 2}}
+  <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
+  <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
+  <input type="text" value="{{(+firstNumber) + (+secondNumber)}}" >
 </body>
 </html>
