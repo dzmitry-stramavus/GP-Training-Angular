@@ -9,10 +9,20 @@
   <script src="js/script.js"></script>
 </head>
 <body>
-  <div class="math-block">
-    <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
-    <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
-    <input type="text" value="{{firstNumber -- secondNumber}}" >
+  <div class="well">
+    <h1>Angular App <small>Task No1</small></h1>
+  </div>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Get sum: </h2>
+      </div>
+      <div class="panel-body">
+        <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
+        <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
+        <input type="text" value="{{firstNumber -- secondNumber}}" readonly="readonly">
+      </div>
+    </div>
   </div>
 </body>
 </html>
