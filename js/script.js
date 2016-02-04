@@ -14,8 +14,8 @@
     $scope.array = [1, 2, 3, 4, 5];
     $scope.arrayResult = $scope.array;
 
-    $scope.multiply = function(multiplyBy) {
-      $scope.arrayResult = _.map($scope.array, function(elem){
+    $scope.multiply = function(array, multiplyBy) {
+      $scope.arrayResult = _.map(array, function(elem){
         return elem * multiplyBy;
       });
       $scope.multiplyBy = "";

@@ -32,14 +32,14 @@
           <h3>Your initial array:</h3>
           <div class="input-group" ng-repeat="elem in array">
             <span class="input-group-addon" id="basic-addon1">{{$index+1}}</span>
-            <input type="text" class="form-control" placeholder="number" value="{{elem}}" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="number" ng-model="array[$index]" aria-describedby="basic-addon1">
           </div>
         </div>
         <div class="col-xs-4">
           <h3>What to do?</h3>
           <div class="input-group">
             <span class="input-group-btn">
-              <button class="btn btn-success" ng-click="multiply(multiplyBy)" type="button">Multiply by:</button>
+              <button class="btn btn-success" ng-click="multiply(array, multiplyBy)" type="button">Multiply by:</button>
             </span>
             <input type="text" ng-model="multiplyBy" class="form-control" placeholder="number...">
           </div>
