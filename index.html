@@ -11,6 +11,7 @@
     <h1>Angular App <small>Task No1</small></h1>
   </div>
   <div class="container-fluid">
+
     <div ng-controller="getSumCtrl" class="panel panel-default">
       <div class="panel-heading">
         <h2>Get sum: </h2>
@@ -21,8 +22,42 @@
         <input type="text" value="{{firstNumber -- secondNumber}}" readonly="readonly">
       </div>
     </div>
+
+    <div ng-controller="underscoreCtrl" class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Try to feel the power of <strong>underscore</strong> library: </h2>
+      </div>
+      <div class="panel-body">
+        <div class="col-xs-4">
+          <h3>Your initial array:</h3>
+          <div class="input-group" ng-repeat="elem in array">
+            <span class="input-group-addon" id="basic-addon1">{{$index+1}}</span>
+            <input type="text" class="form-control" placeholder="number" value="{{elem}}" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <h3>What to do?</h3>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-success" ng-click="multiply(multiplyBy)" type="button">Multiply by:</button>
+            </span>
+            <input type="text" ng-model="multiplyBy" class="form-control" placeholder="number...">
+          </div>
+
+        </div>
+        <div class="col-xs-4">
+          <h3>Result:</h3>
+          <div class="input-group" ng-repeat="elem in arrayResult">
+            <span class="input-group-addon" id="basic-addon1">{{$index+1}}</span>
+            <input type="text" class="form-control" placeholder="number" value="{{elem}}" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>
   <script src="js/script.js"></script>
 </body>
