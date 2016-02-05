@@ -35,16 +35,28 @@
               <button class="btn btn-success" ng-click="pushToArray()" type="button">Add:</button>
             </span>
             <input type="text" ng-model="elemToAdd" class="form-control" placeholder="number...">
-          </div>
+          </div><br>
           <p>Your array: {{array}}</p>
         </div>
         <div class="col-xs-4">
           <h3>What to do?</h3>
           <div class="input-group">
             <span class="input-group-btn">
-              <button class="btn btn-success" ng-click="multiply(array, multiplyBy)" type="button">Multiply by:</button>
+              <button class="btn btn-success" ng-click="multiply(array, multiplyBy)" type="button">Multiply by (_.map):</button>
             </span>
             <input type="text" ng-model="multiplyBy" class="form-control" placeholder="number...">
+          </div><br>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-success" ng-click="select(array, selectOption)" type="button">Select (_.select)</button>
+            </span>
+            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectOption">
+              <option value="">Select from list</option>
+              <option value="even">Even</option>
+              <option value="odd">Odd</option>
+              <option value="greaterThanTen">Greater than 10</option>
+              <option value="lessThanTen">Less than 10</option>
+            </select>
           </div>
         </div>
         <div class="col-xs-4">

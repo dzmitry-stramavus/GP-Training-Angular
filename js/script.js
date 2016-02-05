@@ -25,5 +25,23 @@
       });
       $scope.multiplyBy = "";
     };
+
+    $scope.select = function(array, selectOption) {
+      switch (selectOption) {
+        case "even":
+           $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) === 0;  });
+           break;
+        case "odd":
+          $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) !== 0;  });
+           break;
+        case "greaterThanTen":
+          $scope.arrayResult = _.select(array, function(elem){  return elem > 10;  });
+           break;
+        case "lessThanTen":
+          $scope.arrayResult = _.select(array, function(elem){ return elem < 10;  });
+           break;
+      };
+    };
   });
+
 })();
