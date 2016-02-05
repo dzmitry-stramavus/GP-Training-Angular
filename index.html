@@ -28,6 +28,7 @@
         <h2>Try to feel the power of <strong>underscore</strong> library: </h2>
       </div>
       <div class="panel-body">
+
         <div class="col-xs-4">
           <h3>Create an array:</h3>
           <div class="input-group">
@@ -36,8 +37,11 @@
             </span>
             <input type="text" ng-model="elemToAdd" class="form-control" placeholder="number...">
           </div><br>
-          <p>Your array: {{array}}</p>
+          <p>Your array: <code>{{array}}</code></p><br>
+          <button class="btn btn-default" ng-click="useTestArray()" type="button">Or use test Array</button>
+          <button class="btn btn-default" ng-click="cleanArray()" type="button">Clean the Array</button>
         </div>
+
         <div class="col-xs-4">
           <h3>What to do?</h3>
           <div class="input-group">
@@ -59,12 +63,14 @@
             </select>
           </div>
         </div>
+
         <div class="col-xs-4">
           <h3>Result:</h3>
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="elem in arrayResult">{{elem}}</li>
           </ul>
         </div>
+
       </div>
     </div>
 
