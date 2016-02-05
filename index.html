@@ -29,11 +29,14 @@
       </div>
       <div class="panel-body">
         <div class="col-xs-4">
-          <h3>Your initial array:</h3>
-          <div class="input-group" ng-repeat="elem in array">
-            <span class="input-group-addon" id="basic-addon1">{{$index+1}}</span>
-            <input type="text" class="form-control" placeholder="number" ng-model="array[$index]" aria-describedby="basic-addon1">
+          <h3>Create an array:</h3>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-success" ng-click="pushToArray()" type="button">Add:</button>
+            </span>
+            <input type="text" ng-model="elemToAdd" class="form-control" placeholder="number...">
           </div>
+          <p>Your array: {{array}}</p>
         </div>
         <div class="col-xs-4">
           <h3>What to do?</h3>
@@ -43,14 +46,12 @@
             </span>
             <input type="text" ng-model="multiplyBy" class="form-control" placeholder="number...">
           </div>
-
         </div>
         <div class="col-xs-4">
           <h3>Result:</h3>
-          <div class="input-group" ng-repeat="elem in arrayResult">
-            <span class="input-group-addon" id="basic-addon1">{{$index+1}}</span>
-            <input type="text" class="form-control" placeholder="number" value="{{elem}}" aria-describedby="basic-addon1">
-          </div>
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="elem in arrayResult">{{elem}}</li>
+          </ul>
         </div>
       </div>
     </div>
