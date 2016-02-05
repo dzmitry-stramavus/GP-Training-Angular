@@ -6,19 +6,51 @@
 
   var app = angular.module("calculusApp", ['underscore']);
 
-  app.controller("getSumCtrl", function($scope){
+  app.controller("getSumCtrl", function($scope) {
 
   });
 
-  app.controller("underscoreCtrl", function($scope, _){
-    $scope.array = [1, 2, 3, 4, 5];
+  app.controller("underscoreCtrl", function($scope, _) {
+    $scope.array = [];
     $scope.arrayResult = $scope.array;
+    $scope.testArray = [0,1,2,3,4,5,18,15,14,11,16];
+
+    $scope.useTestArray = function() {
+      $scope.array = $scope.testArray;
+    };
+
+    $scope.cleanArray = function() {
+      $scope.array = [];
+    };
+
+    $scope.pushToArray = function() {
+      $scope.array.push(parseInt($scope.elemToAdd));
+      $scope.elemToAdd = "";
+    };
 
     $scope.multiply = function(array, multiplyBy) {
-      $scope.arrayResult = _.map(array, function(elem){
+      $scope.arrayResult = _.map(array, function(elem) {
         return elem * multiplyBy;
       });
       $scope.multiplyBy = "";
     };
+
+    $scope.select = function(array, selectOption) {
+      switch (selectOption) {
+        case "even":
+           $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) === 0;  });
+           break;
+        case "odd":
+          $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) !== 0;  });
+           break;
+        case "greaterThanTen":
+          $scope.arrayResult = _.select(array, function(elem){  return elem > 10;  });
+           break;
+        case "lessThanTen":
+          $scope.arrayResult = _.select(array, function(elem){ return elem < 10;  });
+           break;
+      };
+    };
   });
+
 })();
