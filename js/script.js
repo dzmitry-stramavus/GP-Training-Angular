@@ -8,7 +8,7 @@
 
   app.directive("sdGetSum", function(){
     return {
-      restrict: "A",
+      restrict: "E",
       template: function () {
         return angular.element(document.querySelector("#getSumTemplate")).html();
       }
