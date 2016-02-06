@@ -9,7 +9,12 @@
   app.directive("sdGetSum", function(){
     return {
       link: function(scope,element, attributes) {
-        scope.result = scope.firstNumber + scope.secondNumber;
+        scope.$watch("firstNumber", function(newValue){
+          scope.result = parseInt(newValue) + parseInt(scope.secondNumber);
+        });
+        scope.$watch("secondNumber", function(newValue){
+          scope.result = parseInt(newValue) + parseInt(scope.firstNumber);
+        });
       },
       restrict: "E",
       template: function () {
