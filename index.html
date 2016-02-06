@@ -55,14 +55,9 @@
           </div><br>
           <div class="input-group">
             <span class="input-group-btn">
-              <button class="btn btn-success" ng-click="select(array, selectOption)" type="button">Select (_.select)</button>
+              <button class="btn btn-success" ng-click="select(array)" type="button">Select (_.select)</button>
             </span>
-            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectOption">
-              <option value="">Select from list</option>
-              <option value="even">Even</option>
-              <option value="odd">Odd</option>
-              <option value="greaterThanTen">Greater than 10</option>
-              <option value="lessThanTen">Less than 10</option>
+            <select class="form-control" ng-model="selectOption" ng-options="item.display for item in filterOptions track by item.value">
             </select>
           </div>
         </div>

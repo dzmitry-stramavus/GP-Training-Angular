@@ -15,6 +15,29 @@
     $scope.arrayResult = $scope.array;
     $scope.testArray = [0,1,2,3,4,5,18,15,14,11,16];
     $scope.underscoreMenu = false;
+    $scope.filterOptions = [
+      {
+        display: "Select from list",
+        value: "null"
+      },
+      {
+        display: "Even",
+        value: "even"
+      },
+      {
+        display: "Odd",
+        value: "odd"
+      },
+      {
+        display: "Greater than 10",
+        value: "greaterThanTen"
+      },
+      {
+        display: "Less than 10",
+        value: "lessThanTen"
+      }
+    ];
+    $scope.selectOption = $scope.filterOptions[0];
 
     $scope.useTestArray = function() {
       $scope.array = $scope.testArray;
@@ -36,8 +59,8 @@
       $scope.multiplyBy = "";
     };
 
-    $scope.select = function(array, selectOption) {
-      switch (selectOption) {
+    $scope.select = function(array) {
+      switch ($scope.selectOption.value) {
         case "even":
            $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) === 0;  });
            break;
