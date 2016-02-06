@@ -6,6 +6,15 @@
 
   var app = angular.module("calculusApp", ['underscore']);
 
+  app.directive("sdGetSum", function(){
+    return {
+      restrict: "A",
+      template: function () {
+        return angular.element(document.querySelector("#getSumTemplate")).html();
+      }
+    }
+  });
+
   app.controller("getSumCtrl", function($scope) {
 
   });

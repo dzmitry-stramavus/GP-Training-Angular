@@ -16,10 +16,8 @@
       <div class="panel-heading">
         <h2>Get sum: </h2>
       </div>
-      <div class="panel-body">
-        <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
-        <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
-        <input ng-cloak type="text" value="{{firstNumber -- secondNumber}}" readonly="readonly">
+      <div class="panel-body" sd-get-sum>
+
       </div>
     </div>
 
@@ -74,6 +72,11 @@
 
   </div>
 
+  <script type="text/ng-template" id="getSumTemplate">
+    <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
+    <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
+    <input ng-cloak type="text" value="{{firstNumber -- secondNumber}}" readonly="readonly">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>
   <script src="js/script.js"></script>
