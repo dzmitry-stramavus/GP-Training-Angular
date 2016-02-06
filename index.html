@@ -17,17 +17,18 @@
         <h2>Get sum: </h2>
       </div>
       <div class="panel-body">
-        <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
-        <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
-        <input type="text" value="{{firstNumber -- secondNumber}}" readonly="readonly">
+        <sd-get-sum></sd-get-sum>
       </div>
     </div>
 
     <div ng-controller="underscoreCtrl" class="panel panel-default">
       <div class="panel-heading">
+        <button ng-cloak ng-click="underscoreMenu = (underscoreMenu) ? false : true" type="button" class="btn btn-default" aria-label="Left Align" style="float:right">
+          <span ng-class="(underscoreMenu) ? 'glyphicon-menu-up' : 'glyphicon-menu-down'" class="glyphicon" aria-hidden="true"></span>
+        </button>
         <h2>Try to feel the power of <strong>underscore</strong> library: </h2>
       </div>
-      <div class="panel-body">
+      <div ng-cloak ng-show="underscoreMenu" class="panel-body">
 
         <div class="col-xs-4">
           <h3>Create an array:</h3>
@@ -52,14 +53,9 @@
           </div><br>
           <div class="input-group">
             <span class="input-group-btn">
-              <button class="btn btn-success" ng-click="select(array, selectOption)" type="button">Select (_.select)</button>
+              <button class="btn btn-success" ng-click="select(array)" type="button">Select (_.select)</button>
             </span>
-            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectOption">
-              <option value="">Select from list</option>
-              <option value="even">Even</option>
-              <option value="odd">Odd</option>
-              <option value="greaterThanTen">Greater than 10</option>
-              <option value="lessThanTen">Less than 10</option>
+            <select class="form-control" ng-model="selectOption" ng-options="item.display for item in filterOptions track by item.value">
             </select>
           </div>
         </div>
@@ -76,6 +72,11 @@
 
   </div>
 
+  <script type="text/ng-template" id="getSumTemplate">
+    <input type="text" ng-model="firstNumber" placeholder="Enter a number here"> +
+    <input type="text" ng-model="secondNumber" placeholder="Enter a number here"> =
+    <input ng-cloak type="text" value="{{result}}" readonly="readonly">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>
   <script src="js/script.js"></script>
