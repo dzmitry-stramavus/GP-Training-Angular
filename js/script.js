@@ -8,6 +8,9 @@
 
   app.directive("sdGetSum", function(){
     return {
+      link: function(scope,element, attributes) {
+        scope.result = scope.firstNumber + scope.secondNumber;
+      },
       restrict: "E",
       template: function () {
         return angular.element(document.querySelector("#getSumTemplate")).html();
@@ -16,7 +19,8 @@
   });
 
   app.controller("getSumCtrl", function($scope) {
-
+    $scope.firstNumber = 2;
+    $scope.secondNumber = 3;
   });
 
   app.controller("underscoreCtrl", function($scope, _) {
