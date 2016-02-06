@@ -14,6 +14,7 @@
     $scope.array = [];
     $scope.arrayResult = $scope.array;
     $scope.testArray = [0,1,2,3,4,5,18,15,14,11,16];
+    $scope.underscoreMenu = false;
 
     $scope.useTestArray = function() {
       $scope.array = $scope.testArray;
