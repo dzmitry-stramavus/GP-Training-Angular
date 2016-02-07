@@ -1,20 +1,50 @@
 ;(function(){
+
   var underscore = angular.module('underscore', []);
   underscore.factory('_', ['$window', function($window) {
     return $window._; // assumes underscore has already been loaded on the page
   }]);
 
-  var app = angular.module("calculusApp", ['underscore']);
+  var app = angular.module("calculusApp", ['ngRoute','underscore']);
+
+  app.config(['$routeProvider',
+    function($routeProvider) {
+      $routeProvider.
+        when('/getSum', {
+            template: '<sd-get-sum></sd-get-sum>',
+            controller: 'getSumCtrl'
+          }).
+        when('/getSum/:firstNumber/plus/:secondNumber', {
+          template: '<sd-get-sum></sd-get-sum>',
+          controller: 'getSumCtrl'
+        }).
+        when('/useUnderscore', {
+          templateUrl: 'templates/useUnderscore.html',
+          controller: 'underscoreCtrl'
+        }).
+        when('/compose', {
+          templateUrl: 'templates/compose.html',
+          controller: 'composeCtrl'
+        }).
+        otherwise({
+          redirectTo: '/getSum'
+        });
+    }
+  ]);
+
+/**************************************Directives**************************************/
 
   app.directive("sdGetSum", function(){
     return {
       link: function(scope,element, attributes) {
+
         scope.$watch("firstNumber", function(newValue){
           scope.result = parseInt(newValue) + parseInt(scope.secondNumber);
         });
         scope.$watch("secondNumber", function(newValue){
           scope.result = parseInt(newValue) + parseInt(scope.firstNumber);
         });
+
       },
       restrict: "E",
       template: function () {
@@ -23,9 +53,43 @@
     }
   });
 
-  app.controller("getSumCtrl", function($scope) {
-    $scope.firstNumber = 2;
-    $scope.secondNumber = 3;
+  app.directive('sdSelectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('focus', function () {
+                this.select();
+            });
+        }
+    };
+});
+
+/*************************************Controllers*************************************/
+
+  app.controller("getSumCtrl", function($scope, $routeParams, $location) {
+    $scope.firstNumber = $routeParams.firstNumber || 0;
+    $scope.secondNumber = $routeParams.secondNumber || 0;
+
+    $scope.$watch("firstNumber", function(newValue, oldValue){
+      if (newValue !== oldValue) {
+        $scope.$parent.focus = "1";
+        $location.path( "/getSum/" + $scope.firstNumber + "/plus/" + $scope.secondNumber);
+      }
+    });
+    $scope.$watch("secondNumber", function(newValue, oldValue){
+      if (newValue !== oldValue) {
+        $scope.$parent.focus = "2";
+        $location.path( "/getSum/" + $scope.firstNumber + "/plus/" + $scope.secondNumber);
+      }
+    });
+    $scope.$watch("focus", function(newValue, oldValue){
+      console.log(newValue);
+      if (newValue === "1") {
+        document.querySelector('#firstNumber').focus();
+      } else if (newValue === "2") {
+        document.querySelector('#secondNumber').focus();
+      }
+    });
   });
 
   app.controller("underscoreCtrl", function($scope, _) {
@@ -95,4 +159,28 @@
     };
   });
 
+  app.controller("composeCtrl", function($scope, _) {
+    var add = function(a,b){
+        return parseInt(a) + parseInt(b);
+    }
+    var rateconversion = function(value){
+        return value * $scope.rate;
+    }
+
+    $scope.firstNumber = 0;
+    $scope.secondNumber = 0;
+    $scope.rate = 1.5;
+    $scope.composed = _.compose(rateconversion, add);
+
+    $scope.$watch("rate", function(newValue){
+      $scope.result = $scope.composed($scope.firstNumber, $scope.secondNumber);
+    });
+    $scope.$watch("firstNumber", function(newValue){
+      $scope.result = $scope.composed(newValue, $scope.secondNumber);
+    });
+    $scope.$watch("secondNumber", function(newValue){
+      $scope.result = $scope.composed($scope.firstNumber, newValue);
+    });
+
+  });
 })();
