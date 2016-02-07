@@ -4,7 +4,24 @@
     return $window._; // assumes underscore has already been loaded on the page
   }]);
 
-  var app = angular.module("calculusApp", ['underscore']);
+  var app = angular.module("calculusApp", ['ngRoute','underscore']);
+
+  app.config(['$routeProvider',
+    function($routeProvider) {
+      $routeProvider.
+        when('/getSum', {
+          templateUrl: 'templates/getSum.html'
+          /*controller: ''*/
+        }).
+        when('/useUnderscore', {
+          templateUrl: 'templates/useUnderscore.html'
+          /*controller: ''*/
+        }).
+        otherwise({
+          redirectTo: '/getSum'
+        });
+    }
+  ]);
 
   app.directive("sdGetSum", function(){
     return {

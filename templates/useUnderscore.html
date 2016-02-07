@@ -1,0 +1,48 @@
+<div ng-controller="underscoreCtrl" class="panel panel-default">
+  <div class="panel-heading">
+    <button ng-cloak ng-click="underscoreMenu = (underscoreMenu) ? false : true" type="button" class="btn btn-default" aria-label="Left Align" style="float:right">
+      <span ng-class="(underscoreMenu) ? 'glyphicon-menu-up' : 'glyphicon-menu-down'" class="glyphicon" aria-hidden="true"></span>
+    </button>
+    <h2>Try to feel the power of <strong>underscore</strong> library: </h2>
+  </div>
+  <div ng-cloak ng-show="underscoreMenu" class="panel-body">
+
+    <div class="col-xs-4">
+      <h3>Create an array:</h3>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-success" ng-click="pushToArray()" type="button">Add:</button>
+        </span>
+        <input type="text" ng-model="elemToAdd" class="form-control" placeholder="number...">
+      </div><br>
+      <p>Your array: <code>{{array}}</code></p><br>
+      <button class="btn btn-default" ng-click="useTestArray()" type="button">Or use test Array</button>
+      <button class="btn btn-default" ng-click="cleanArray()" type="button">Clean the Array</button>
+    </div>
+
+    <div class="col-xs-4">
+      <h3>What to do?</h3>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-success" ng-click="multiply(array, multiplyBy)" type="button">Multiply by (_.map):</button>
+        </span>
+        <input type="text" ng-model="multiplyBy" class="form-control" placeholder="number...">
+      </div><br>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-success" ng-click="select(array)" type="button">Select (_.select)</button>
+        </span>
+        <select class="form-control" ng-model="selectOption" ng-options="item.display for item in filterOptions track by item.value">
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <h3>Result:</h3>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="elem in arrayResult">{{elem}}</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
