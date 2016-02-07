@@ -14,6 +14,10 @@
           template: '<sd-get-sum></sd-get-sum>',
           controller: 'getSumCtrl'
         }).
+        when('/getSum/:firstNumber/plus/:secondNumber', {
+          template: '<sd-get-sum></sd-get-sum>',
+          controller: 'getSumFromUrlCtrl'
+        }).
         when('/useUnderscore', {
           templateUrl: 'templates/useUnderscore.html',
           controller: 'underscoreCtrl'
@@ -50,6 +54,10 @@
     $scope.secondNumber = 3;
   });
 
+  app.controller("getSumFromUrlCtrl", function($scope, $routeParams) {
+    $scope.firstNumber = $routeParams.firstNumber;
+    $scope.secondNumber = $routeParams.secondNumber;
+  });
 
   app.controller("underscoreCtrl", function($scope, _) {
     $scope.array = [];
