@@ -11,12 +11,12 @@
     function($routeProvider) {
       $routeProvider.
         when('/getSum', {
-          template: '<sd-get-sum></sd-get-sum>',
-          controller: 'getSumCtrl'
-        }).
+            template: '<sd-get-sum></sd-get-sum>',
+            controller: 'getSumCtrl'
+          }).
         when('/getSum/:firstNumber/plus/:secondNumber', {
           template: '<sd-get-sum></sd-get-sum>',
-          controller: 'getSumFromUrlCtrl'
+          controller: 'getSumCtrl'
         }).
         when('/useUnderscore', {
           templateUrl: 'templates/useUnderscore.html',
@@ -51,12 +51,7 @@
 
 /*************************************Controllers*************************************/
 
-  app.controller("getSumCtrl", function($scope) {
-    $scope.firstNumber = 2;
-    $scope.secondNumber = 3;
-  });
-
-  app.controller("getSumFromUrlCtrl", function($scope, $routeParams, $location) {
+  app.controller("getSumCtrl", function($scope, $routeParams, $location) {
     $scope.firstNumber = $routeParams.firstNumber;
     $scope.secondNumber = $routeParams.secondNumber;
 
