@@ -63,8 +63,8 @@
 /*************************************Controllers*************************************/
 
   app.controller("getSumCtrl", function($scope, $routeParams, $location) {
-    $scope.firstNumber = $routeParams.firstNumber;
-    $scope.secondNumber = $routeParams.secondNumber;
+    $scope.firstNumber = $routeParams.firstNumber || 0;
+    $scope.secondNumber = $routeParams.secondNumber || 0;
 
     $scope.$watch("firstNumber", function(newValue, oldValue){
       if (newValue !== oldValue) {
