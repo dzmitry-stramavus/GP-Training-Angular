@@ -54,9 +54,17 @@
     $scope.secondNumber = 3;
   });
 
-  app.controller("getSumFromUrlCtrl", function($scope, $routeParams) {
+  app.controller("getSumFromUrlCtrl", function($scope, $routeParams, $location) {
     $scope.firstNumber = $routeParams.firstNumber;
     $scope.secondNumber = $routeParams.secondNumber;
+
+    $scope.$watch("firstNumber", function(newValue){
+      $location.path( "/getSum/" + newValue + "/plus/" + $scope.secondNumber);
+    });
+    $scope.$watch("secondNumber", function(newValue){
+      $location.path( "/getSum/" + $scope.firstNumber + "/plus/" + newValue);
+    });
+
   });
 
   app.controller("underscoreCtrl", function($scope, _) {
