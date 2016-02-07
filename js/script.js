@@ -33,12 +33,14 @@
   app.directive("sdGetSum", function(){
     return {
       link: function(scope,element, attributes) {
+
         scope.$watch("firstNumber", function(newValue){
           scope.result = parseInt(newValue) + parseInt(scope.secondNumber);
         });
         scope.$watch("secondNumber", function(newValue){
           scope.result = parseInt(newValue) + parseInt(scope.firstNumber);
         });
+
       },
       restrict: "E",
       template: function () {
@@ -58,13 +60,26 @@
     $scope.firstNumber = $routeParams.firstNumber;
     $scope.secondNumber = $routeParams.secondNumber;
 
-    $scope.$watch("firstNumber", function(newValue){
-      $location.path( "/getSum/" + newValue + "/plus/" + $scope.secondNumber);
+    $scope.$watch("firstNumber", function(newValue, oldValue){
+      if (newValue !== oldValue) {
+        $scope.$parent.focus = "1";
+        $location.path( "/getSum/" + $scope.firstNumber + "/plus/" + $scope.secondNumber);
+      }
     });
-    $scope.$watch("secondNumber", function(newValue){
-      $location.path( "/getSum/" + $scope.firstNumber + "/plus/" + newValue);
+    $scope.$watch("secondNumber", function(newValue, oldValue){
+      if (newValue !== oldValue) {
+        $scope.$parent.focus = "2";
+        $location.path( "/getSum/" + $scope.firstNumber + "/plus/" + $scope.secondNumber);
+      }
     });
-
+    $scope.$watch("focus", function(newValue, oldValue){
+      console.log(newValue);
+      if (newValue === "1") {
+        document.querySelector('#firstNumber').focus();
+      } else if (newValue === "2") {
+        document.querySelector('#secondNumber').focus();
+      }
+    });
   });
 
   app.controller("underscoreCtrl", function($scope, _) {
