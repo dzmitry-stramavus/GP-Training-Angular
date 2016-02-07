@@ -83,7 +83,6 @@
       }
     });
     $scope.$watch("focus", function(newValue, oldValue){
-      console.log(newValue);
       if (newValue === "1") {
         document.querySelector('#firstNumber').focus();
       } else if (newValue === "2") {
@@ -94,9 +93,7 @@
 
   app.controller("underscoreCtrl", function($scope, _) {
     $scope.array = [];
-    $scope.arrayResult = $scope.array;
-    $scope.testArray = [0,1,2,3,4,5,18,15,14,11,16];
-    $scope.underscoreMenu = false;
+    $scope.multiplyBy = 1;
     $scope.filterOptions = [
       {
         display: "Select from list",
@@ -121,42 +118,52 @@
     ];
     $scope.selectOption = $scope.filterOptions[0];
 
-    $scope.useTestArray = function() {
-      $scope.array = $scope.testArray;
+    $scope.getRandomArray = function() {
+      var i = 0;
+      var array = [];
+      while(i < 10) {
+        var item = Math.floor(Math.random()*20);
+        if (array.indexOf(item) === -1) {
+          array.push(item);
+          i++;
+        }
+      }
+      $scope.arrayResult = $scope.array = array;
     };
 
     $scope.cleanArray = function() {
       $scope.array = [];
+      $scope.arrayResult = [];
     };
 
-    $scope.pushToArray = function() {
-      $scope.array.push(parseInt($scope.elemToAdd));
-      $scope.elemToAdd = "";
-    };
-
-    $scope.multiply = function(array, multiplyBy) {
-      $scope.arrayResult = _.map(array, function(elem) {
-        return elem * multiplyBy;
+    $scope.multiply = function() {
+      $scope.arrayResult = _.map($scope.array, function(elem) {
+        return elem * $scope.multiplyBy;
       });
-      $scope.multiplyBy = "";
     };
 
-    $scope.select = function(array) {
+    $scope.select = function() {
       switch ($scope.selectOption.value) {
         case "even":
-           $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) === 0;  });
+           $scope.arrayResult = _.select($scope.array, function(elem){  return (elem % 2) === 0;  });
            break;
         case "odd":
-          $scope.arrayResult = _.select(array, function(elem){  return (elem % 2) !== 0;  });
+          $scope.arrayResult = _.select($scope.array, function(elem){  return (elem % 2) !== 0;  });
            break;
         case "greaterThanTen":
-          $scope.arrayResult = _.select(array, function(elem){  return elem > 10;  });
+          $scope.arrayResult = _.select($scope.array, function(elem){  return elem > 10;  });
            break;
         case "lessThanTen":
-          $scope.arrayResult = _.select(array, function(elem){ return elem < 10;  });
+          $scope.arrayResult = _.select($scope.array, function(elem){ return elem < 10;  });
            break;
       };
     };
+    $scope.$watch("multiplyBy", function(newValue){
+      $scope.multiply();
+    });
+    $scope.$watch("selectOption", function(newValue){
+      $scope.select();
+    });
   });
 
   app.controller("composeCtrl", function($scope, _) {
