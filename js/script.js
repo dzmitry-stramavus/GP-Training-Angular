@@ -49,6 +49,17 @@
     }
   });
 
+  app.directive('sdSelectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('focus', function () {
+                this.select();
+            });
+        }
+    };
+});
+
 /*************************************Controllers*************************************/
 
   app.controller("getSumCtrl", function($scope, $routeParams, $location) {
