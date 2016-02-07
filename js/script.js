@@ -160,24 +160,26 @@
   });
 
   app.controller("composeCtrl", function($scope, _) {
-    $scope.firstNumber = 0;
-    $scope.secondNumber = 0;
-    $scope.rate = 1.5;
     var add = function(a,b){
-        return a + b;
+        return parseInt(a) + parseInt(b);
     }
     var rateconversion = function(value){
         return value * $scope.rate;
     }
 
+    $scope.firstNumber = 0;
+    $scope.secondNumber = 0;
+    $scope.rate = 1.5;
+    $scope.composed = _.compose(rateconversion, add);
+
     $scope.$watch("rate", function(newValue){
-      $scope.result = _.compose(rateconversion, add)(parseInt($scope.firstNumber), parseInt($scope.secondNumber));
+      $scope.result = $scope.composed($scope.firstNumber, $scope.secondNumber);
     });
     $scope.$watch("firstNumber", function(newValue){
-      $scope.result = _.compose(rateconversion, add)(parseInt(newValue), parseInt($scope.secondNumber));
+      $scope.result = $scope.composed(newValue, $scope.secondNumber);
     });
     $scope.$watch("secondNumber", function(newValue){
-      $scope.result = _.compose(rateconversion, add)(parseInt($scope.firstNumber), parseInt(newValue));
+      $scope.result = $scope.composed($scope.firstNumber, newValue);
     });
 
   });
