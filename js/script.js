@@ -1,4 +1,5 @@
 ;(function(){
+
   var underscore = angular.module('underscore', []);
   underscore.factory('_', ['$window', function($window) {
     return $window._; // assumes underscore has already been loaded on the page
@@ -10,18 +11,20 @@
     function($routeProvider) {
       $routeProvider.
         when('/getSum', {
-          templateUrl: 'templates/getSum.html'
-          /*controller: ''*/
+          template: '<sd-get-sum></sd-get-sum>',
+          controller: 'getSumCtrl'
         }).
         when('/useUnderscore', {
-          templateUrl: 'templates/useUnderscore.html'
-          /*controller: ''*/
+          templateUrl: 'templates/useUnderscore.html',
+          controller: 'underscoreCtrl'
         }).
         otherwise({
           redirectTo: '/getSum'
         });
     }
   ]);
+
+/**************************************Directives**************************************/
 
   app.directive("sdGetSum", function(){
     return {
@@ -40,10 +43,13 @@
     }
   });
 
+/*************************************Controllers*************************************/
+
   app.controller("getSumCtrl", function($scope) {
     $scope.firstNumber = 2;
     $scope.secondNumber = 3;
   });
+
 
   app.controller("underscoreCtrl", function($scope, _) {
     $scope.array = [];
