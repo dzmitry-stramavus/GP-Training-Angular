@@ -190,8 +190,6 @@
         return value * $scope.rate;
     }
 
-    $scope.firstNumber = 0;
-    $scope.secondNumber = 0;
     $scope.rate = 1.5;
     $scope.composed = _.compose(rateconversion, add);
 
