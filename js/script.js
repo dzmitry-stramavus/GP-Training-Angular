@@ -38,7 +38,7 @@
     return {
       link: function(scope,element, attributes) {
 
-        scope.$watch("firstNumber", function(newValue){
+       scope.$watch("firstNumber", function(newValue){
           scope.result = parseInt(newValue) + parseInt(scope.secondNumber);
         });
         scope.$watch("secondNumber", function(newValue){
@@ -66,9 +66,21 @@
 
 /*************************************Controllers*************************************/
 
-  app.controller("getSumCtrl", function($scope, $routeParams, $location) {
+  app.controller("getSumCtrl", function($scope, $routeParams, $location, $http) {
     $scope.firstNumber = $routeParams.firstNumber || 0;
     $scope.secondNumber = $routeParams.secondNumber || 0;
+
+    if(!$scope.$parent.data) {
+      $http.get('http://api.fixer.io/latest').then(fulfilled);
+    };
+    function fulfilled(response) {
+      $scope.$parent.data = response.data;
+      console.log("JSON loaded!");
+      $scope.converted = ($scope.$parent.data.rates['CAD'] || 1) * $scope.result;
+    }
+    $scope.$watch("result", function(newValue, oldValue){
+      $scope.converted = ($scope.$parent.data ? $scope.$parent.data.rates['CAD'] : 1) * $scope.result;
+    });
 
     $scope.$watch("firstNumber", function(newValue, oldValue){
       if (newValue !== oldValue) {
@@ -143,20 +155,19 @@
     };
 
     $scope.select = function() {
-      switch ($scope.selectOption.value) {
-        case "even":
-           $scope.arrayResult = _.select($scope.array, function(elem){  return (elem % 2) === 0;  });
-           break;
-        case "odd":
-          $scope.arrayResult = _.select($scope.array, function(elem){  return (elem % 2) !== 0;  });
-           break;
-        case "greaterThanTen":
-          $scope.arrayResult = _.select($scope.array, function(elem){  return elem > 10;  });
-           break;
-        case "lessThanTen":
-          $scope.arrayResult = _.select($scope.array, function(elem){ return elem < 10;  });
-           break;
-      };
+      var expression = "";
+      if ($scope.selectOption.value === "even") {
+        expression = '(elem % 2) === 0';
+      } else if ($scope.selectOption.value === "odd") {
+        expression = '(elem % 2) !== 0;';
+      } else if ($scope.selectOption.value === "greaterThanTen") {
+        expression = 'elem > 10;';
+      } else if ($scope.selectOption.value === "lessThanTen") {
+        expression = 'elem < 10;';
+      }
+      $scope.arrayResult = _.select($scope.array, function(elem){
+        return eval(expression);
+      });
     };
     $scope.$watch("multiplyBy", function(newValue){
       $scope.multiply();
