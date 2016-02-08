@@ -1,9 +1,14 @@
 ;(function(){
 
+/***************************************Modules****************************************/
+
   var underscore = angular.module('underscore', []);
   underscore.factory('_', ['$window', function($window) {
     return $window._; // assumes underscore has already been loaded on the page
   }]);
+
+
+/************************************My App********************************************/
 
   var app = angular.module("calculusApp", ['ngRoute','underscore']);
 
@@ -38,11 +43,8 @@
     return {
       link: function(scope,element, attributes) {
 
-       scope.$watch("firstNumber", function(newValue){
-          scope.result = parseInt(newValue) + parseInt(scope.secondNumber);
-        });
-        scope.$watch("secondNumber", function(newValue){
-          scope.result = parseInt(newValue) + parseInt(scope.firstNumber);
+       scope.$watch("firstNumber + secondNumber", function(newValue){
+          scope.result = parseInt(scope.firstNumber) + parseInt(scope.secondNumber);
         });
 
       },
@@ -80,10 +82,7 @@
       $scope.$parent.selectCurrency = $scope.$parent.data.rates;
       $scope.$parent.currency = $scope.$parent.selectCurrency["CAD"];
     }
-    $scope.$watch("result", function(newValue, oldValue){
-      $scope.converted = ($scope.$parent.data ? $scope.$parent.currency : 1) * $scope.result;
-    });
-    $scope.$watch("$parent.currency", function(newValue, oldValue){
+    $scope.$watch("result + $parent.currency", function(newValue, oldValue){
       $scope.converted = ($scope.$parent.data ? $scope.$parent.currency : 1) * $scope.result;
     });
 
@@ -149,8 +148,7 @@
     };
 
     $scope.cleanArray = function() {
-      $scope.array = [];
-      $scope.arrayResult = [];
+      $scope.arrayResult = $scope.array = [];
     };
 
     $scope.multiply = function() {
@@ -191,16 +189,9 @@
     }
 
     $scope.rate = 1.5;
-    $scope.composed = _.compose(rateconversion, add);
 
-    $scope.$watch("rate", function(newValue){
-      $scope.result = $scope.composed($scope.firstNumber, $scope.secondNumber);
-    });
-    $scope.$watch("firstNumber", function(newValue){
-      $scope.result = $scope.composed(newValue, $scope.secondNumber);
-    });
-    $scope.$watch("secondNumber", function(newValue){
-      $scope.result = $scope.composed($scope.firstNumber, newValue);
+    $scope.$watch("rate + firstNumber + secondNumber", function(newValue){
+      $scope.result = _.compose(rateconversion, add)($scope.firstNumber, $scope.secondNumber);
     });
 
   });
