@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="well">
-    <h1>Angular App <small>Task No1</small></h1>
+    <h1>Angular App <small>GP software.travel | training</small></h1>
   </div>
   <div class="container-fluid">
 
@@ -27,9 +27,14 @@
   </div>
 
   <script type="text/ng-template" id="getSumTemplate">
-    <input type="text" id="firstNumber" sd-select-on-click ng-model="firstNumber" placeholder="Enter a number here" > +
-    <input type="text" id="secondNumber" sd-select-on-click ng-model="secondNumber" placeholder="Enter a number here" > =
-    <input ng-cloak type="text" value="{{result | currency : '€'}}" readonly="readonly"><span id="exchangeRate"> Canadian Dollars: {{converted | number:2}}</span>
+    <div class="input-group" style="width:250px">
+      <span class="input-group-addon" id="basic-addon1">Select currency</span>
+      <select class="form-control" ng-model="$parent.currency" ng-options="v as k for (k, v) in $parent.selectCurrency"></select>
+    </div>
+    <input type="text" class="sd-form-control" id="firstNumber" sd-select-on-click ng-model="firstNumber" > +
+    <input type="text" class="sd-form-control" id="secondNumber" sd-select-on-click ng-model="secondNumber" > =
+    <input type="text" class="sd-form-control" value="{{result | currency : '€'}}" ng-cloak readonly="readonly">
+    <span> Converted value: <b>{{converted | number:2}}<b></span>
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>

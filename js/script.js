@@ -76,10 +76,15 @@
     function fulfilled(response) {
       $scope.$parent.data = response.data;
       console.log("JSON loaded!");
-      $scope.converted = ($scope.$parent.data.rates['CAD'] || 1) * $scope.result;
+      $scope.converted = $scope.$parent.data.rates['CAD'] * $scope.result;
+      $scope.$parent.selectCurrency = $scope.$parent.data.rates;
+      $scope.$parent.currency = $scope.$parent.selectCurrency["CAD"];
     }
     $scope.$watch("result", function(newValue, oldValue){
-      $scope.converted = ($scope.$parent.data ? $scope.$parent.data.rates['CAD'] : 1) * $scope.result;
+      $scope.converted = ($scope.$parent.data ? $scope.$parent.currency : 1) * $scope.result;
+    });
+    $scope.$watch("$parent.currency", function(newValue, oldValue){
+      $scope.converted = ($scope.$parent.data ? $scope.$parent.currency : 1) * $scope.result;
     });
 
     $scope.$watch("firstNumber", function(newValue, oldValue){
