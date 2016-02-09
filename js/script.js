@@ -82,7 +82,7 @@
       $scope.$parent.selectCurrency = $scope.$parent.data.rates;
       $scope.$parent.currency = $scope.$parent.selectCurrency['CAD'];
     }
-    $scope.$watch('result + $parent.currency', function(newValue, oldValue){
+    $scope.$watch('result + $parent.currency', function(){
       $scope.converted = ($scope.$parent.data ? $scope.$parent.currency : 1) * $scope.result;
     });
 
@@ -100,9 +100,9 @@
     });
     $scope.$watch('focus', function(newValue, oldValue){
       if (newValue === '1') {
-        document.querySelector('#firstNumber').focus();
+        $document.querySelector('#firstNumber').focus();
       } else if (newValue === "2") {
-        document.querySelector('#secondNumber').focus();
+        $document.querySelector('#secondNumber').focus();
       }
     });
   });
@@ -181,18 +181,18 @@
   });
 
   app.controller('composeCtrl', function($scope, _) {
-    var add = function(a,b){
-        return parseInt(a) + parseInt(b);
-    }
-    var rateconversion = function(value){
-        return value * $scope.rate;
-    }
-
     $scope.rate = 1.5;
 
     $scope.$watch('rate + firstNumber + secondNumber', function(newValue){
       $scope.result = _.compose(rateconversion, add)($scope.firstNumber, $scope.secondNumber);
     });
+
+    function add(a,b) {
+        return parseInt(a) + parseInt(b);
+    }
+    function rateconversion(value){
+        return value * $scope.rate;
+    }
 
   });
 })();
