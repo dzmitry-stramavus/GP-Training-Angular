@@ -100,9 +100,9 @@
     });
     $scope.$watch('focus', function(newValue, oldValue){
       if (newValue === '1') {
-        $document.querySelector('#firstNumber').focus();
+        document.querySelector('#firstNumber').focus();
       } else if (newValue === "2") {
-        $document.querySelector('#secondNumber').focus();
+        document.querySelector('#secondNumber').focus();
       }
     });
   });
