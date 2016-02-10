@@ -1,4 +1,4 @@
-link to launch this project: http://dzmitry-stramavus.github.io/GP-Training-Angular
+http://dzmitry-stramavus.github.io/GP-Training-Angular   - link to launch this project
 # GP-Training-Angular
 It's a project for practising AngularJS
 
