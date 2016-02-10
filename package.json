@@ -1,0 +1,32 @@
+{
+  "name": "gp_app",
+  "version": "1.0.0",
+  "description": "link to open this project: http://dzmitry-stramavus.github.io/GP-Training-Angular\r # GP-Training-Angular\r It's a project for practising AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzmitry-stramavus/GP-Training-Angular.git"
+  },
+  "author": "Dzmitry Stramavus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dzmitry-stramavus/GP-Training-Angular/issues"
+  },
+  "homepage": "https://github.com/dzmitry-stramavus/GP-Training-Angular#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
+    "gulp-uncss": "^1.0.4"
+  }
+}
