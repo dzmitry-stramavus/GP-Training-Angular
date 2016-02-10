@@ -1,0 +1,8 @@
+<div class="input-group" style="width:250px">
+  <span class="input-group-addon" id="basic-addon1">Select currency</span>
+  <select class="form-control" ng-model="$parent.currency" ng-options="v as k for (k, v) in $parent.selectCurrency"></select>
+</div>
+<input type="text" class="sd-form-control" id="firstNumber" sd-select-on-click ng-model="firstNumber" > +
+<input type="text" class="sd-form-control" id="secondNumber" sd-select-on-click ng-model="secondNumber" > =
+<input type="text" class="sd-form-control" value="{{result | currency : '€'}}" ng-cloak readonly="readonly">
+<span> Converted value: <b>{{converted | number:2}}<b></span>
