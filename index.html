@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="calculusApp">
+<html lang="en" ng-app="gpApp">
 <head>
   <meta charset="UTF-8">
   <title>GP Training|AngularJS</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="content/styles.css">
 </head>
 <body>
   <div class="well">
@@ -12,11 +12,7 @@
   </div>
   <div class="container-fluid">
 
-    <div class="btn-group" role="group">
-      <a href="#/getSum" role="button" class="btn btn-default">Get Sum</a>
-      <a href="#/useUnderscore" role="button" class="btn btn-default">Use Underscore</a>
-      <a href="#/compose" role="button" class="btn btn-default">Try _compose</a>
-    </div>
+    <div ng-include="'app/layout/topnav.html'"></div>
 
     <div class="panel panel-default">
       <div ng-cloak class="panel-body">
@@ -28,19 +24,19 @@
 
   </div>
 
-  <script type="text/ng-template" id="getSumTemplate">
-    <div class="input-group" style="width:250px">
-      <span class="input-group-addon" id="basic-addon1">Select currency</span>
-      <select class="form-control" ng-model="$parent.currency" ng-options="v as k for (k, v) in $parent.selectCurrency"></select>
-    </div>
-    <input type="text" class="sd-form-control" id="firstNumber" sd-select-on-click ng-model="firstNumber" > +
-    <input type="text" class="sd-form-control" id="secondNumber" sd-select-on-click ng-model="secondNumber" > =
-    <input type="text" class="sd-form-control" value="{{result | currency : '€'}}" ng-cloak readonly="readonly">
-    <span> Converted value: <b>{{converted | number:2}}<b></span>
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-route.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-route.js"></script>
+
+
+  <script src="app/app.module.js"></script>
+  <script src="app/app.config.js"></script>
+  <script src="app/services/underscore.service.js"></script>
+  <script src="app/components/select-on-click.directive.js"></script>
+  <script src="app/components/sum.directive.js"></script>
+  <script src="app/layout/topnav.controller.js"></script>
+  <script src="app/sum/sum.controller.js"></script>
+  <script src="app/underscore/underscore.controller.js"></script>
+  <script src="app/compose/compose.controller.js"></script>
 </body>
 </html>
