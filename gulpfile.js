@@ -13,7 +13,8 @@ var gulp = require('gulp'),
     uncss = require('gulp-uncss'),
     angularFilesort = require('gulp-angular-filesort'),
     inject = require('gulp-inject'),
-    mainBowerFiles = require('main-bower-files');
+    mainBowerFiles = require('main-bower-files'),
+    ngAnnotate = require('gulp-ng-annotate');
 
 // server connect
 gulp.task('connect', function() {
@@ -21,6 +22,13 @@ gulp.task('connect', function() {
     root: '',
     livereload: true
   });
+});
+
+// add angularjs dependency injection
+gulp.task('ngAnnotate', function () {
+  return gulp.src(['app/*.js','app/**/*.js'])
+    .pipe(ngAnnotate())
+    .pipe(gulp.dest('dist'));
 });
 
 // sort Angular JS app files and inject all files for development
