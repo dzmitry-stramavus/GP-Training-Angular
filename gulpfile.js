@@ -10,7 +10,10 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify'),
-    uncss = require('gulp-uncss');
+    uncss = require('gulp-uncss'),
+    angularFilesort = require('gulp-angular-filesort'),
+    inject = require('gulp-inject'),
+    mainBowerFiles = require('main-bower-files');
 
 // server connect
 gulp.task('connect', function() {
@@ -20,9 +23,28 @@ gulp.task('connect', function() {
   });
 });
 
+// sort Angular JS app files and inject all files for development
+gulp.task('sort_inject', function() {
+  return gulp.src('src/index.html')
+    .pipe(inject(
+      gulp.src(mainBowerFiles({
+          paths: {
+            bowerDirectory: 'bower',
+            bowerrc: '.bowerrc',
+            bowerJson: 'bower.json'
+          },
+          group: 'development'
+        }), {read: false}), {name: 'bower'}))
+    .pipe(inject(
+      gulp.src(['app/*.js','app/**/*.js'])
+        .pipe(angularFilesort())
+    ))
+    .pipe(gulp.dest(''));
+});
+
 // css
 gulp.task('css', function() {
-   return gulp.src('content/scss/styles.scss')
+   return gulp.src('src/scss/styles.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
             browsers: ['> 1%', 'IE 9'],
@@ -55,7 +77,7 @@ gulp.task('css', function() {
 });*/
 // html
 gulp.task('html', function(){
-  gulp.src('index.html')
+  return gulp.src('index.html')
   .pipe(connect.reload())
   .pipe(notify('HTML Done! :)'));
 });
