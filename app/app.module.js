@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-  .module('gpApp', ['ui.router', 'ngRoute']);
+  .module('gpApp', ['ui.router']);
 
 })();
 
