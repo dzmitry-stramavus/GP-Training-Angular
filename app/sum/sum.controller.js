@@ -5,11 +5,10 @@ angular
   .module('gpApp')
   .controller('sumCtrl', sum);
 
-
-function sum($scope, $routeParams, $location, $http) {
+function sum($scope, $state, $http) {
   console.log("sum controller");
-  $scope.firstNumber = $routeParams.firstNumber || 0;
-  $scope.secondNumber = $routeParams.secondNumber || 0;
+  $scope.firstNumber = $state.params.firstNumber;
+  $scope.secondNumber = $state.params.secondNumber;
 
   if(!$scope.$parent.data) {
     $http.get('http://api.fixer.io/latest').then(fulfilled);
@@ -25,14 +24,14 @@ function sum($scope, $routeParams, $location, $http) {
     console.log("watcher: first number");
     if (newValue !== oldValue) {
       $scope.$parent.focus = '1';
-      $location.path( '/sum/' + $scope.firstNumber + '/plus/' + $scope.secondNumber);
+      $state.go( 'sum', {firstNumber: $scope.firstNumber, secondNumber: $scope.secondNumber});
     }
   });
   $scope.$watch('secondNumber', function(newValue, oldValue) {
     console.log("watcher: secondNumber");
     if (newValue !== oldValue) {
       $scope.$parent.focus = '2';
-      $location.path( '/sum/' + $scope.firstNumber + '/plus/' + $scope.secondNumber);
+      $state.go( 'sum', {firstNumber: $scope.firstNumber, secondNumber: $scope.secondNumber});
     }
   });
   $scope.$watch('focus', function(newValue, oldValue) {

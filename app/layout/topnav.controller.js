@@ -5,14 +5,14 @@ angular
   .module('gpApp')
   .controller('topNavCtrl', topNav);
 
-function topNav($scope, $route) {
-  $scope.isTrue = true;
+function topNav($scope, $state) {
   $scope.isRoute = function(path) {
-    /*//issue: isRoute() is running every time several times, but controller is OK
+    /*
+    //issue: isRoute() is running every time several times, but controller is OK
     console.log(path);
-    console.log($route.current.originalPath);
-    console.log($route.current.originalPath.substr(1, path.length) === path);*/
-    return $route.current.originalPath.substr(1, path.length) === path;
+    console.log($state.current.url);*/
+
+    return $state.current.url.substr(1, path.length) === path;
   }
 }
 })();

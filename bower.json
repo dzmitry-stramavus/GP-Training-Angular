@@ -4,20 +4,28 @@
     "angular": "~1.5.0",
     "underscore": "~1.8.3",
     "bootstrap": "~3.3.6",
-    "angular-route": "~1.5.0"
-    },
+    "angular-route": "~1.5.0",
+    "angular-ui-router": "~0.2.18"
+  },
   "overrides": {
     "bootstrap": {
       "main": "./dist/css/bootstrap.css"
     }
   },
   "group": {
-    "development": ["angular", "underscore", "bootstrap", "angular-route"]
+    "development": [
+      "angular",
+      "underscore",
+      "bootstrap",
+      "angular-route",
+      "angular-ui-router"
+    ]
   },
   "devDependencies": {
     "angular": "~1.5.0",
     "underscore": "~1.8.3",
     "bootstrap": "~3.3.6",
-    "angular-route": "~1.5.0"
+    "angular-route": "~1.5.0",
+    "angular-ui-router": "~0.2.18"
   }
 }

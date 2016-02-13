@@ -5,29 +5,29 @@ angular
   .module('gpApp')
   .config(config);
 
-config.$ingect = ['$routeProvider'];
-
-function config($routeProvider) {
-  $routeProvider.
-    when('/sum', {
-        template: '<sd-sum></sd-sum>',
-        controller: 'sumCtrl'
-      }).
-    when('/sum/:firstNumber/plus/:secondNumber', {
+function config($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('sum', {
+      url: '/sum/:firstNumber/plus/:secondNumber',
       template: '<sd-sum></sd-sum>',
-      controller: 'sumCtrl'
-    }).
-    when('/underscore', {
+      controller: 'sumCtrl',
+      params: {
+        firstNumber: '0',
+        secondNumber: '0'
+      }
+    })
+    .state('underscore', {
+      url: '/underscore',
       templateUrl: 'app/underscore/underscore.html',
       controller: 'underscoreCtrl'
-    }).
-    when('/compose', {
+    })
+    .state('compose', {
+      url: '/compose',
       templateUrl: 'app/compose/compose.html',
       controller: 'composeCtrl'
-    }).
-    otherwise({
-      redirectTo: '/sum'
     });
+  $urlRouterProvider
+    .otherwise('/sum/0/plus/0');
 }
 
 })();
