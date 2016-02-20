@@ -15,8 +15,7 @@ function config($stateProvider, $urlRouterProvider) {
           controller: 'topNavCtrl'
         },
         'content': {
-          template: '<sd-sum></sd-sum>',
-          controller: 'sumCtrl',
+          template: '<sd-sum></sd-sum>' // directive: sum
         }
       }
     })

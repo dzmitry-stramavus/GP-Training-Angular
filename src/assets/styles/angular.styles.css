@@ -1,0 +1,26 @@
+.list-group .animate-repeat {
+  list-style:none;
+  box-sizing:border-box;
+}
+
+.list-group .animate-repeat.ng-move,
+.list-group .animate-repeat.ng-enter,
+.list-group .animate-repeat.ng-leave {
+  transition:all ease 0.5s;
+}
+
+.list-group .animate-repeat.ng-leave.ng-leave-active,
+.list-group .animate-repeat.ng-move,
+.list-group .animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+  padding: 0 15px;
+}
+
+.list-group .animate-repeat.ng-leave,
+.list-group .animate-repeat.ng-move.ng-move-active,
+.list-group .animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  padding: 10px 15px;
+  max-height:50px;
+}

@@ -14,7 +14,7 @@ function compose($scope, _) {
   });
 
   function add(a,b) {
-    return parseInt(a) + parseInt(b);
+    return parseFloat(a, 10) + parseFloat(b, 10);
   }
   function rateconversion(value) {
     return value * $scope.rate;
