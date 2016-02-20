@@ -14,7 +14,7 @@ function sum(){
       });
     },
     restrict: 'E',
-    templateUrl: 'app/components/sum.directive.html'
+    templateUrl: 'src/app/components/sum.directive/sum.directive.html'
   }
 }
 

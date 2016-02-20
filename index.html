@@ -6,7 +6,9 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.css">
   <!-- endinject -->
-  <link rel="stylesheet" href="content/styles.css">
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/src/assets/styles/styles.css">
+  <!-- endinject -->
 </head>
 <body>
   <div class="well">
@@ -14,12 +16,14 @@
   </div>
   <div class="container-fluid">
 
-    <div ng-include="'app/layout/topnav.html'"></div>
+    <div ui-view="topNav">
+      <!-- here will be inserted topNav -->
+    </div>
 
     <div class="panel panel-default">
       <div ng-cloak class="panel-body">
-        <div ui-view>
-          <!-- here will be inserted templates -->
+        <div ui-view="content">
+          <!-- here will be inserted content -->
         </div>
       </div>
     </div>
@@ -35,15 +39,15 @@
   <!-- endinject -->
 
   <!-- inject:js -->
-  <script src="/app/app.module.js"></script>
-  <script src="/app/underscore/underscore.controller.js"></script>
-  <script src="/app/sum/sum.controller.js"></script>
-  <script src="/app/services/underscore.service.js"></script>
-  <script src="/app/layout/topnav.controller.js"></script>
-  <script src="/app/compose/compose.controller.js"></script>
-  <script src="/app/components/sum.directive.js"></script>
-  <script src="/app/components/select-on-click.directive.js"></script>
-  <script src="/app/app.config.js"></script>
+  <script src="/src/app/app.module.js"></script>
+  <script src="/src/app/components/sum.directive/sum.directive.js"></script>
+  <script src="/src/app/underscore/underscore.controller.js"></script>
+  <script src="/src/app/topNav/topNav.controller.js"></script>
+  <script src="/src/app/sum/sum.controller.js"></script>
+  <script src="/src/app/services/underscore.service.js"></script>
+  <script src="/src/app/compose/compose.controller.js"></script>
+  <script src="/src/app/components/select-on-click.directive.js"></script>
+  <script src="/src/app/app.config.js"></script>
   <!-- endinject -->
 
 </body>

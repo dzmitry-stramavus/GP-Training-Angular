@@ -5,7 +5,8 @@
   <title>GP Training|AngularJS</title>
   <!-- bower:css -->
   <!-- endinject -->
-  <link rel="stylesheet" href="content/styles.css">
+  <!-- inject:css -->
+  <!-- endinject -->
 </head>
 <body>
   <div class="well">
@@ -13,12 +14,14 @@
   </div>
   <div class="container-fluid">
 
-    <div ng-include="'app/layout/topnav.html'"></div>
+    <div ui-view="topNav">
+      <!-- here will be inserted topNav -->
+    </div>
 
     <div class="panel panel-default">
       <div ng-cloak class="panel-body">
-        <div ui-view>
-          <!-- here will be inserted templates -->
+        <div ui-view="content">
+          <!-- here will be inserted content -->
         </div>
       </div>
     </div>

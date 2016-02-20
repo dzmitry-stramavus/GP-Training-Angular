@@ -26,7 +26,7 @@ gulp.task('connect', function() {
 
 // add angularjs dependency injection
 gulp.task('ngAnnotate', function () {
-  return gulp.src(['app/*.js','app/**/*.js'])
+  return gulp.src(['src/app/*.js','src/app/**/*.js'])
     .pipe(ngAnnotate())
     .pipe(gulp.dest('dist'));
 });
@@ -41,18 +41,22 @@ gulp.task('sort_inject', function() {
             bowerrc: '.bowerrc',
             bowerJson: 'bower.json'
           },
+          includeDev: true,
           group: 'development'
         }), {read: false}), {name: 'bower'}))
     .pipe(inject(
-      gulp.src(['app/*.js','app/**/*.js'])
+      gulp.src(['src/app/*.js','src/app/**/*.js'])
         .pipe(angularFilesort())
+    ))
+    .pipe(inject(
+      gulp.src(['src/assets/styles/*.css'])
     ))
     .pipe(gulp.dest(''));
 });
 
 // css
 gulp.task('css', function() {
-   return gulp.src('src/scss/styles.scss')
+   return gulp.src('src/assets/styles/styles.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
             browsers: ['> 1%', 'IE 9'],
@@ -61,7 +65,7 @@ gulp.task('css', function() {
     //.pipe(minifyCss({compatibility: 'ie9'}))
     //.pipe(rename('bundle.min.css'))
     .pipe(rename('styles.css'))
-    .pipe(gulp.dest('content/'))
+    .pipe(gulp.dest(''))
     .pipe(connect.reload())
     .pipe(notify('CSS Done! :)'));
 });
@@ -85,15 +89,33 @@ gulp.task('css', function() {
 });*/
 // html
 gulp.task('html', function(){
-  return gulp.src('index.html')
+  return gulp.src('src/index.html')
+  .pipe(inject(
+    gulp.src(mainBowerFiles({
+        paths: {
+          bowerDirectory: 'bower',
+          bowerrc: '.bowerrc',
+          bowerJson: 'bower.json'
+        },
+        includeDev: true,
+        group: 'development'
+      }), {read: false}), {name: 'bower'}))
+  .pipe(inject(
+    gulp.src(['src/app/*.js','src/app/**/*.js'])
+      .pipe(angularFilesort())
+  ))
+  .pipe(inject(
+    gulp.src(['src/assets/styles/*.css'])
+  ))
+  .pipe(gulp.dest(''))
   .pipe(connect.reload())
   .pipe(notify('HTML Done! :)'));
 });
 
 // watch
 gulp.task('watch', function(){
-  gulp.watch('content/scss/styles.scss', ['css']);
-  gulp.watch('index.html', ['html']);
+  gulp.watch('src/assets/styles/styles.scss', ['css']);
+  gulp.watch('src/index.html', ['html']);
 });
 
 // default
