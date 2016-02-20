@@ -89,7 +89,7 @@ gulp.task('css', function() {
 });*/
 // html
 gulp.task('html', function(){
-  return gulp.src('src/index.html')
+  return gulp.src(['src/index.html'])
   .pipe(inject(
     gulp.src(mainBowerFiles({
         paths: {
@@ -99,14 +99,14 @@ gulp.task('html', function(){
         },
         includeDev: true,
         group: 'development'
-      }), {read: false}), {name: 'bower'}))
+      }), {read: false}), {addRootSlash: false, name: 'bower'}))
   .pipe(inject(
     gulp.src(['src/app/*.js','src/app/**/*.js'])
-      .pipe(angularFilesort())
+      .pipe(angularFilesort()), {addRootSlash: false }
   ))
   .pipe(inject(
-    gulp.src(['src/assets/styles/*.css'])
-  ))
+    gulp.src(['src/assets/styles/*.css']), {addRootSlash: false })
+  )
   .pipe(gulp.dest(''))
   .pipe(connect.reload())
   .pipe(notify('HTML Done! :)'));
