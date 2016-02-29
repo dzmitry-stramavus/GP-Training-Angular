@@ -21,6 +21,9 @@
 <div class="col-sm-4">
   <h3>Result:</h3>
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="elem in arrayResult">{{elem}}</li>
+    <li class="list-group-item animate-repeat" ng-repeat="elem in arrayResult">{{elem}}</li>
+    <li class="animate-repeat" ng-if="arrayResult.length == 0">
+      <strong>No array is created...</strong>
+    </li>
   </ul>
 </div>

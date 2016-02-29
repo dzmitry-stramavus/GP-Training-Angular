@@ -7,13 +7,11 @@
   <link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.css">
   <!-- endinject -->
   <!-- inject:css -->
+  <link rel="stylesheet" href="src/assets/styles/angular.styles.css">
   <link rel="stylesheet" href="src/assets/styles/styles.css">
   <!-- endinject -->
 </head>
 <body>
-  <div class="well">
-    <h1>Angular App <small>GP software.travel | training</small></h1>
-  </div>
   <div class="container-fluid">
 
     <div ui-view="topNav">
@@ -36,16 +34,17 @@
   <script src="bower/jquery/dist/jquery.js"></script>
   <script src="bower/angular-route/angular-route.js"></script>
   <script src="bower/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower/angular-animate/angular-animate.js"></script>
   <!-- endinject -->
 
   <!-- inject:js -->
   <script src="src/app/app.module.js"></script>
   <script src="src/app/components/sum.directive/sum.directive.js"></script>
+  <script src="src/app/components/sum.directive/sum.directive.controller.js"></script>
   <script src="src/app/underscore/underscore.controller.js"></script>
   <script src="src/app/topNav/topNav.controller.js"></script>
-  <script src="src/app/sum/sum.controller.js"></script>
-  <script src="src/app/compose/compose.controller.js"></script>
   <script src="src/app/services/underscore.service.js"></script>
+  <script src="src/app/compose/compose.controller.js"></script>
   <script src="src/app/components/select-on-click.directive.js"></script>
   <script src="src/app/app.config.js"></script>
   <!-- endinject -->

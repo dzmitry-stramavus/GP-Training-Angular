@@ -19,6 +19,9 @@ function sum($scope, $state, $http) {
 
 // issue: if we change path by $location.path or $state.go, sum controller is running
 // every time when inputs(firstNumber and secondNumber) are changed
+  $scope.$watch('firstNumber + secondNumber', function(newValue){
+    $scope.result = parseFloat($scope.firstNumber, 10) + parseFloat($scope.secondNumber, 10);
+  });
   $scope.$watch('firstNumber', function(newValue, oldValue) {
     if (newValue !== oldValue) {
       $scope.$parent.focus = '1';

@@ -65,7 +65,7 @@ gulp.task('css', function() {
     //.pipe(minifyCss({compatibility: 'ie9'}))
     //.pipe(rename('bundle.min.css'))
     .pipe(rename('styles.css'))
-    .pipe(gulp.dest(''))
+    .pipe(gulp.dest('src/assets/styles/'))
     .pipe(connect.reload())
     .pipe(notify('CSS Done! :)'));
 });
@@ -97,8 +97,7 @@ gulp.task('html', function(){
           bowerrc: '.bowerrc',
           bowerJson: 'bower.json'
         },
-        includeDev: true,
-        group: 'development'
+        includeDev: true
       }), {read: false}), {addRootSlash: false, name: 'bower'}))
   .pipe(inject(
     gulp.src(['src/app/*.js','src/app/**/*.js'])
